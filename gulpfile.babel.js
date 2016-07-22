@@ -11,17 +11,24 @@ import browserify from 'browserify';
 const sourcePath = 'src';
 const destPath = 'public';
 const tempPath = 'temp';
+const sassGlob = `${sourcePath}/scss/**/*.scss`
 const cssSourcePath = `${sourcePath}/scss/main.scss`;
 const cssTempPath = `${tempPath}/css`;
 const cssDestPath = `${destPath}/css`;
 const jsSourcePath = `${sourcePath}/js/main.js`;
 const jsDestPath = `${destPath}/js`;
-const jsDestFilename = 'output.js';
+const jsDestFilename = 'join-it.js';
 
-/** todo - gulp sass lint **/
 /** todo - gulp imagemin **/
 
-gulp.task('sass', function () {
+gulp.task('sasslint', function () {
+  return gulp.src(sassGlob)
+    .pipe(sassLint())
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+});
+
+gulp.task('sass', ['sassLint'], function () {
     return gulp.src(cssSourcePath)
     .pipe(sass({
         outputStyle: 'expanded'
