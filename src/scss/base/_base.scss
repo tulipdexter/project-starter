@@ -1,0 +1,15 @@
+$base-text-color: #222; // Variablise
+$body-bg: #fff;
+
+* {
+    box-sizing: $box-sizing;
+}
+
+html {
+    color: $base-text-color;
+}
+
+body {
+    margin: 0;
+    background-color: $body-bg;
+}

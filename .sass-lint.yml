@@ -1,0 +1,145 @@
+options:
+    merge-default-rules: false
+files:
+    include: 'src/stylesheets/**/*.s+(a|c)ss'
+rules:
+    # ACTIVATED RULES
+
+    # Formatting
+    space-after-comma: 2
+    space-before-brace: 2
+    space-before-colon:
+        - 2
+        -
+            include: false
+    space-after-colon: 2
+    space-between-parens:
+        - 2
+        -
+            include: false
+    space-around-operator: 2
+    trailing-semicolon: 2
+    indentation:
+        - 2
+        -
+          size: 4
+    brace-style:
+        - 2
+        -
+            style: 'stroustrup'
+            allow-single-line: true
+    space-before-bang: 2
+    space-after-bang:
+        - 2
+        -
+            include: false
+    empty-line-between-blocks: 2
+    #final-newline: 2
+    # Remove this due to a bug in grunt-sass-lint (or sass-lint) that means the ignore path is not working as expected.
+    # See https://github.com/sasstools/grunt-sass-lint/issues/24
+
+    # Naming
+    clean-import-paths: 2
+    function-name-format:
+        - 2
+        -
+            allow-leading-underscore: false
+            convention: hyphenatedlowercase
+    mixin-name-format:
+        - 2
+        -
+            allow-leading-underscore: false
+            convention: hyphenatedlowercase
+
+    # Rules
+    no-empty-rulesets: 2
+    single-line-per-selector: 2
+    one-declaration-per-line: 2
+    no-qualifying-elements:
+        - 2
+        -
+            allow-element-with-id: false
+            allow-element-with-class: true # Pending: around 50 fixes needed
+            allow-element-with-attribute: true # Pending: around 50 fixes needed
+    nesting-depth:
+        - 2
+        -
+            max-depth: 6 # Pending: reduce, preferably to 3 or 4
+    bem-depth:
+        - 2
+        -
+            max-depth: 1
+    extends-before-mixins: 2
+    extends-before-declarations: 2
+    mixins-before-declarations:
+        - 2
+        -
+          exclude:
+            - breakpoint
+            - mappy-bp
+            - on-event
+            - with-layout
+            - mq
+            - active-parent
+
+    # Units
+    no-invalid-hex: 2
+    no-color-keywords: 2
+    hex-length:
+        - 2
+        -
+            style: short
+    hex-notation:
+        - 2
+        -
+          style: lowercase
+    zero-unit:
+        - 2
+        -
+            include: false
+    shorthand-values:
+        - 2
+        -
+            allowed-shorthands:
+                - 1
+                - 2
+    no-trailing-zero: 2
+
+
+    # INCOMING RULES
+
+    quotes: 0 # 100 changes required => double quotes, 600 changes required => single quotes
+    no-misspelled-properties: 0 # Around 10 errors relating to unusual property names
+    placeholder-in-extend: 0
+    no-warn: 0
+    no-debug: 0
+    no-ids: 0 # In some places, targetting ids is currently required
+    no-important: 0 # Need to fix problems in overriding legacy CSS
+    empty-args: # Many changes required either way. include: false produces weirdness with functions
+        - 0
+        -
+            include: true
+    property-sort-order: # Many, many changes will be required
+        - 0
+        -
+          order:
+            - display
+            - margin
+          ignore-custom-properties: true
+    variable-for-property:
+        - 0
+        -
+          properties:
+            - margin
+            - content
+    variable-name-format: # 293 changes required
+        - 0
+        -
+            allow-leading-underscore: true
+            convention: hyphenatedlowercase
+
+
+
+    # UNWANTED RULES
+
+    no-mergeable-selectors: 0 # Doesn't work properly, and not sure whether it would be beneficial anyway
